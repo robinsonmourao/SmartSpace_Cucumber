@@ -1,0 +1,4 @@
+default: -p test
+         --publish-quiet
+
+test: ENVIRONMENT_TYPE=test
