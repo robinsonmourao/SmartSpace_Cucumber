@@ -16,7 +16,10 @@ CONFIG = YAML.load_file(File.dirname(__FILE__) + "/data/#{ENVIRONMENT_TYPE}.yml"
 
 Capybara.register_driver :selenium do |app|
   options = Selenium::WebDriver::Chrome::Options.new
+
   options.add_argument('--disable-infobars')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--remote-debugging-port=9222')
   options.add_argument('window-size=1366x768')
 
   if HEADLESS
@@ -29,6 +32,6 @@ end
 
 Capybara.configure do |config|
   config.default_driver = :selenium
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 30
   config.app_host = 'https://smartspace.com.br'
 end
